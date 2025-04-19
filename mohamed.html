@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ask Me First - بوت الكمبيوتر المتكامل</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 30px;
+      direction: rtl;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #00ffcc;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+    }
+    button {
+      background-color: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color .3s;
+    }
+    button:hover {
+      background-color: #00cc99;
+    }
+    #botResponse {
+      margin-top: 25px;
+      background: #1a1a1a;
+      border-left: 5px solid #00ffcc;
+      padding: 20px;
+      border-radius: 12px;
+      animation: slideFade .5s ease-in-out;
+    }
+    #botResponse img {
+      width: 300px;
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border: 2px solid #00ffcc;
+    }
+    @keyframes slideFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 Ask Me First</h1>
+    <input type="text" id="userQuestion" placeholder="اكتب سؤالك عن أي منتج أو تجميعة كمبيوتر هنا..." />
+    <button onclick="getAnswer()">اسأل البوت</button>
+    <div id="botResponse"></div>
+  </div>
+
+  <script>
+    function getAnswer() {
+      const q = document.getElementById('userQuestion').value.toLowerCase();
+      const d = document.getElementById('botResponse');
+
+      // تهيئة المحتوى
+      let html = '';
+
+      // ماوس
+      if (q.includes('ماوس')) {
+        html = `
+          <img src="https://i.imgur.com/Z9h8bZJ.jpeg" alt="Redragon M612">
+          <h2>🖱️ Redragon M612</h2>
+          <p><strong>المميزات:</strong> 8000 DPI، 11 زر قابل للبرمجة، RGB</p>
+          <p><strong>السعر:</strong> 850 جنيه</p>
+          <p><a href="https://www.amazon.eg/dp/B09X1Y8Z1Z" target="_blank">شراء من أمازون.eg</a></p>`;
+      }
+      // كيبورد
+      else if (q.includes('كيبورد') || q.includes('لوحة مفاتيح')) {
+        html = `
+          <img src="https://i.imgur.com/rpXVpyE.jpeg" alt="Redragon K552">
+          <h2>⌨️ Redragon K552 KUMARA</h2>
+          <p><strong>المميزات:</strong> ميكانيكي، RGB، سويتش أزرق</p>
+          <p><strong>السعر:</strong> 1,690 جنيه</p>
+          <p><a href="https://www.amazon.eg/dp/B085T458RR" target="_blank">شراء من أمازون.eg</a></p>`;
+      }
+      // شاشة
+      else if (q.includes('شاشة') || q.includes('monitor')) {
+        html = `
+          <img src="https://i.imgur.com/1eOJ7fi.jpeg" alt="BenQ Monitor">
+          <h2>🖥️ BenQ 24" LED Monitor</h2>
+          <p><strong>المميزات:</strong> 1080p، 75Hz، IPS</p>
+          <p><strong>السعر:</strong> 2,200 جنيه</p>
+          <p><a href="https://www.jumia.com.eg/product/benq-24-inch-monitor" target="_blank">شراء من جوميا</a></p>`;
+      }
+      // رامات
+      else if (q.includes('رام') || q.includes('ddr')) {
+        html = `
+          <img src="https://i.imgur.com/W5ySV5g.jpeg" alt="Corsair Vengeance">
+          <h2>💾 Corsair Vengeance 8GB DDR4</h2>
+          <p><strong>المميزات:</strong> 8GB، 3200MHz</p>
+          <p><strong>السعر:</strong> 650 جنيه</p>
+          <p><a href="https://www.jumia.com.eg/corsair-vengeance-8gb-ddr4" target="_blank">شراء من جوميا</a></p>`;
+      }
+      // GPU
+      else if (q.includes('كارت شاشة') || q.includes('gpu')) {
+        html = `
+          <img src="https://i.imgur.com/2Bl2kNk.jpeg" alt="RTX 3060">
+          <h2>🎮 NVIDIA RTX 3060</h2>
+          <p><strong>المميزات:</strong> 12GB VRAM، دعم تتبع الأشعة</p>
+          <p><strong>السعر:</strong> 8,000 جنيه</p>
+          <p><a href="https://www.amazon.eg/dp/B08YNVHDGT" target="_blank">شراء من أمازون.eg</a></p>`;
+      }
+      // لوحة أم
+      else if (q.includes('لوحة أم') || q.includes('motherboard')) {
+        html = `
+          <img src="https://i.imgur.com/3y6kQJx.jpeg" alt="MSI B450">
+          <h2>🔧 MSI B450 Tomahawk</h2>
+          <p><strong>المميزات:</strong> Chipset B450، دعم Ryzen، واجهة USB 3.1</p>
+          <p><strong>السعر:</strong> 2,200 جنيه</p>
+          <p><a href="https://www.jumia.com.eg/msi-b450-tomahawk" target="_blank">شراء من جوميا</a></p>`;
+      }
+      // تجميعات
+      else if (q.includes('تجميعة') || q.includes('تجميع')) {
+        html = `
+          <img src="https://i.imgur.com/2s8NYVu.jpeg" alt="PC Build">
+          <h2>🛠️ تجميعة اقتصادية</h2>
+          <p><strong>المعالج:</strong> Core i3 12100F</p>
+          <p><strong>GPU:</strong> GTX 1650</p>
+          <p><strong>الرام:</strong> 8GB DDR4</p>
+          <p><strong>التخزين:</strong> SSD 256GB</p>
+          <p><strong>السعر:</strong> 13,800 جنيه</p>
+          <p><a href="https://tv-it.com/ar/product-categories/pc-bundles-egypt" target="_blank">رابط الشراء</a></p>`;
+      }
+      // غير موجود
+      else {
+        html = `<p>❓ لم أجد ما تطلبه. جرّب البحث بكلمات مثل: ماوس، كيبورد، شاشة، رام، GPU، لوحة أم، تجميعة.</p>`;
+      }
+
+      d.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
